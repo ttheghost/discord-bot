@@ -15,8 +15,12 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt update
+        sudo apt install -y software-properties-common
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+        sudo apt update
         sudo apt install -y gcc-16 g++-16 ninja-build python3-pip
-        pip install conan
+    - name: Install Conan
+      run: pip install conan
     - name: Detect Conan profile
       run: conan profile detect --force
     - name: Install Conan dependencies

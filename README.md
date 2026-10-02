@@ -5,7 +5,7 @@ A C++ discord bot for the Better-Cpp discord server
 ## Requirements
 
 - GCC 16 for C++ 26
-- CMake 4.0+
+- CMake 3.30+
 - Ninja
 - Conan 2.x
 

@@ -6,13 +6,13 @@
 
 class Bot {
 public:
-  explicit Bot(const std::string &token);
+  explicit Bot(std::string const& token);
   void run();
 
 private:
-  void on_log(const dpp::log_t &event);
-  void on_ready(const dpp::ready_t &event);
-  void on_slashcommand(const dpp::slashcommand_t &event);
+  void on_log(dpp::log_t const& event);
+  void on_ready(dpp::ready_t const& event);
+  void on_slashcommand(dpp::slashcommand_t const& event);
 
   dpp::cluster cluster_;
 };

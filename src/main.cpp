@@ -4,7 +4,7 @@
 #include <discord_bot/bot.hpp>
 
 int main() {
-  const char *token = std::getenv("BOT_TOKEN");
+  char const* token = std::getenv("BOT_TOKEN");
   if (!token) {
     std::println(stderr, "BOT_TOKEN environment variable is not set");
     return EXIT_FAILURE;

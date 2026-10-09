@@ -4,14 +4,14 @@
 
 #include <dpp/dpp.h>
 
-Bot::Bot(std::string const& token) : cluster_(token) {
-  cluster_.on_log([this](dpp::log_t const& e) { on_log(e); });
-  cluster_.on_ready([this](dpp::ready_t const& e) { on_ready(e); });
-  cluster_.on_slashcommand(
+Bot::Bot(std::string const& token) : cluster(token) {
+  cluster.on_log([this](dpp::log_t const& e) { on_log(e); });
+  cluster.on_ready([this](dpp::ready_t const& e) { on_ready(e); });
+  cluster.on_slashcommand(
       [this](dpp::slashcommand_t const& e) { on_slashcommand(e); });
 }
 
-void Bot::run() { cluster_.start(dpp::st_wait); }
+void Bot::run() { cluster.start(dpp::st_wait); }
 
 void Bot::on_log(dpp::log_t const& event) {
   std::println(stderr, "[{}] {}: {}", dpp::utility::current_date_time(),
@@ -20,8 +20,8 @@ void Bot::on_log(dpp::log_t const& event) {
 
 void Bot::on_ready(dpp::ready_t const&) {
   if (dpp::run_once<struct register_bot_commands>()) {
-    cluster_.global_command_create(
-        dpp::slashcommand("ping", "Ping pong!", cluster_.me.id));
+    cluster.global_command_create(
+        dpp::slashcommand("ping", "Ping pong!", cluster.me.id));
   }
 }
 
